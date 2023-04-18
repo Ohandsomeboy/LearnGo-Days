@@ -33,6 +33,6 @@ func max(x, y int) int {
 }
 
 func main() {
-	var s string = "abcabcbb"
+	var s string = "abcabb"
 	fmt.Println(lengthOfLongestSubstring(s))
 }
