@@ -1,0 +1,19 @@
+select FirstName, LastName, City, State
+from Person left join Address
+on Person.PersonId = Address.PersonId
+
+多表联结：（7种）
+select ... from 表1 as a left join
+表 2 as b on a.列名=b.列名
+
+select ... from 表1 as a right join
+表 2 as b on a.列名=b.列名
+
+select ... from 表1 as a inner join
+表 2 as b on a.列名=b.列名
+
+select ... from 表1 as a left join
+表 2 as b on a.列名=b.列名 where b.列名 is null
+
+select ... from 表1 as a right join
+表 2 as b on a.列名=b.列名 where b.列名 is null
