@@ -30,30 +30,29 @@ import "fmt"
 //	return maxR
 //}
 
-// 动态规划
-func longestPalindrome(s string) string {
-	dp := make([][]bool, len(s))
-	result := s[0:1]
-	for i := 0; i < len(s); i++ {
-		dp[i] = make([]bool, len(s))
-		dp[i][i] = true
+func expandAroudCenter(s string, left, right int) (int, int) {
+	for ; left >= 0 && right < len(s) && s[left] == s[right]; left, right = left-1, right+1 {
 	}
-	for length := 2; length <= len(s); length++ {
-		for start := 0; start < len(s)-length+1; start++ {
-			end := start + length - 1
-			if s[start] != s[end] {
-				continue
-			} else if length < 3 {
-				dp[start][end] = true
-			} else {
-				dp[start][end] = dp[start+1][end-1]
-			}
-			if dp[start][end] && (end-start+1) > len(result) {
-				result = s[start : end+1]
-			}
+	return left + 1, right - 1
+}
+
+// 边界条件
+func longestPalindrome(s string) string {
+	if s == "" {
+		return ""
+	}
+	start, end := 0, 0
+	for i := 0; i < len(s); i++ {
+		left1, right1 := expandAroudCenter(s, i, i)
+		left2, right2 := expandAroudCenter(s, i, i+1)
+		if right1-left1 > end-start {
+			start, end = left1, right1
+		}
+		if right2-left2 > end-start {
+			start, end = left2, right2
 		}
 	}
-	return result
+	return s[start : end+1]
 }
 
 func main() {
