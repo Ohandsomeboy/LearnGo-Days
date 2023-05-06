@@ -1,0 +1,12 @@
+思路： 连接两个表格，用common key product_id,
+然后返回product_name, year, price即可
+
+解法：
+
+SELECT product_name, year, price
+FROM Sales
+JOIN Product USING(product_id)
+GROUP BY sale_id
+
+select product_name, year, price
+from Sales S left join Product P on S.product_id = P.product_id

@@ -59,3 +59,6 @@ FALSE 和 UNKNOWN。任何与 NULL 值进行的比较都会与第三种值 UNKNO
 这就是为什么 MySQL 
 提供 IS NULL 和 IS NOT NULL 两种操作来对 NULL 特殊判断。
 
+# 2023.5.5
+leetcode 9 15
+sql 1378 1068

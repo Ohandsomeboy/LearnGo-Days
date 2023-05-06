@@ -14,7 +14,7 @@ func lengthOfLongestSubstring(s string) int {
 			// // delete(map, key) 用于删除集合的某个元素，参数为 map 和其对应的 key
 			delete(m, s[i-1])
 		}
-		for rk+1 < n && m[s[rk+1]] == 0 {
+		for rk+1 < n && m[s[rk+1]] == 0 { // 当成 while 来用
 			// 不断地移动右指针
 			m[s[rk+1]]++
 			rk++

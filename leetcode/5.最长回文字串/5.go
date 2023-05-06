@@ -30,7 +30,7 @@ import "fmt"
 //	return maxR
 //}
 
-func expandAroudCenter(s string, left, right int) (int, int) {
+func expandAroudCenter(s string, left, right int) (int, int) { // for 定义; 循环条件; 迭代语句
 	for ; left >= 0 && right < len(s) && s[left] == s[right]; left, right = left-1, right+1 {
 	}
 	return left + 1, right - 1
@@ -43,8 +43,8 @@ func longestPalindrome(s string) string {
 	}
 	start, end := 0, 0
 	for i := 0; i < len(s); i++ {
-		left1, right1 := expandAroudCenter(s, i, i)
-		left2, right2 := expandAroudCenter(s, i, i+1)
+		left1, right1 := expandAroudCenter(s, i, i)   // 奇数
+		left2, right2 := expandAroudCenter(s, i, i+1) // 偶数
 		if right1-left1 > end-start {
 			start, end = left1, right1
 		}
