@@ -52,7 +52,7 @@ func longestPalindrome(s string) string {
 			start, end = left2, right2
 		}
 	}
-	return s[start : end+1]
+	return s[start : end+1] // 返回一个切片
 }
 
 func main() {

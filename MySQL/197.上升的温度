@@ -1,0 +1,3 @@
+select w2.id from Weather w1, Weather w2
+WHERE w2.recordDate = ADDDATE(w1.recordDate, INTERVAL 1 DAY)
+    AND w2.temperature > w1.temperature

@@ -12,7 +12,7 @@ func threeSum(nums []int) (ans [][]int) {
 	}
 	sort.Ints(nums) // 递增排序
 	for i := 0; i < n; i++ {
-		if nums[i] > 0 { // 起始数组大于0，后续也大于0.因为整个数组是有序的
+		if nums[i] > 0 { // 起始数组大于0，后续也大于0. 因为整个数组是有序的
 			return ans
 		}
 		// 去重，当起始的值等于前一个元素，

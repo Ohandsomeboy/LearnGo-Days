@@ -62,3 +62,69 @@ FALSE 和 UNKNOWN。任何与 NULL 值进行的比较都会与第三种值 UNKNO
 # 2023.5.5
 leetcode 9 15
 sql 1378 1068
+整理面经
+
+# 2023.5.7
+leetcode 15 20 21
+sql 197
+方法一：lag()+datediff()
+lag()和lead()这两个函数可以查询我们得到的结果集上下偏移相应行数的相应的结果。
+
+lag()函数：
+查询当前行向上偏移n行对应的结果
+该函数有三个参数：第一个为待查询的参数列名，第二个为向上偏移的位数，第三个参数为超出最上面边界的默认值。
+
+lead()函数：
+查询当前行向下偏移n行对应的结果
+该函数有三个参数：第一个为待查询的参数列名，第二个为向下偏移的位数，第三个参数为超出最下面边界的默认值。
+
+DATEDIFF()
+
+DATEDIFF() 函数返回两个日期之间的时间。
+
+day=DiffDate=enddate−startdate=1，把示例的day换成year，就是按年计算
+
+
+select id from
+(select id, temperature, recordDate, lag(recordDate,1) 
+over(order by recordDate) as last_date,
+lag(temperature,1) over(order by recordDate) as last_temperature
+from Weather) a where temperature > last_temperature and 
+datediff(recordDate, last_date) = 1
+
+方法二：笛卡尔积
+获取所有比前一天温度高的记录并记录其id
+找相关联表 题干涉及到的表只有单表Weather
+分析：
+
+我们想要拿记录的温度与前一天进行相对比，那必然需要将前一天的记录放到一行中，不然单纯的select是无法进行比较的；所以想到用笛卡儿积，然后再通过前置知识进去过滤+温度条件
+
+三、写SQL 将1步骤对应条件拼接到步骤2后面即可得到SQL
+
+小知识：笛卡尔积
+笛卡尔积是指在数学中，两个集合X和Y的笛卡尓积（Cartesian product），又称直积，表示为X×Y，
+第一个对象是X的成员而第二个对象是Y的所有可能有序对的其中一个成员。
+笛卡尔积又叫笛卡尔乘积，是一个叫笛卡尔的人提出来的。 简单的说就是两个集合相乘的结果。
+
+假设集合A={a, b}，集合B={0, 1, 2}，则两个集合的笛卡尔积为{(a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2)}。
+
+inner join(等值连接) 只返回两个表中联结字段相等的行on表示链接条件
+
+select b.Id from weather a inner join weather b
+where DATEDIFF(b.recordDate,a.recordDate)=1 and b.Temperature > a.Temperature;
+
+方法三：TIMESTAMPDIFF()
+TIMESTAMPDIFF能干什么，可以计算相差天数、小时、分钟和秒，相比于datediff函数要灵活很多。格式是时间小的前，时间大的放在后面。 计算相差天数：
+
+select w1.Id
+from Weather as w1, Weather as w2
+where TIMESTAMPDIFF(DAY, w2.RecordDate, w1.RecordDate) = 1
+AND w1.Temperature > w2.Temperature
+
+方法四：adddate()函数
+ADDDATE()函数用于将指定的时间间隔添加到日期值date是表示日期的值，它可以是 String、DATE（YEAR、MONTH 和 DAY）、DATETIME（HOURS、MINUTES 或 SECONDS）或 TIMESTAMP 类型。
+
+ADDDATE( date , INTERVAL value addunit )
+
+ADDDATE( date , days )
+

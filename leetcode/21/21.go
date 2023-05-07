@@ -33,8 +33,11 @@ type ListNode struct {
 // 至于本题并不难，只需要判断两个链表头部元素的大小，
 // 把小的那个链表节点放到 结果链表 的结尾即可。
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+	// dummyHead是一个哑结点，用于方便操作链表的头节点
 	dummyHead := &ListNode{}
+	// 定义指针p指向dummyHead，用于遍历并操作新链表
 	p := dummyHead
+	// 循环遍历两个链表，将它们中较小的元素依次添加到新链表的尾部
 	for list1 != nil && list2 != nil {
 		if list1.Val >= list2.Val {
 			p.Next = list2
@@ -45,12 +48,15 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 		}
 		p = p.Next
 	}
+	// 如果list1还有剩余元素，则直接将剩余部分连接到新链表的尾部
 	if list1 != nil {
 		p.Next = list1
 	}
+	// 如果list2还有剩余元素，则直接将剩余部分连接到新链表的尾部
 	if list2 != nil {
 		p.Next = list2
 	}
+	// 返回新链表的头节点
 	return dummyHead.Next
 }
 
