@@ -77,6 +77,8 @@ func findRightBound(nums []int, target int) int {
 //用两个边界方法------------------------------------------------------------------------
 
 // 二分查找
+/* SerchInts函数会返回数组中target第一次出现的位置，
+   如果没有找到，则返回数组长度*/
 //func searchRange(nums []int, target int) []int {
 //	leftmost := sort.SearchInts(nums, target)
 //	if leftmost == len(nums) || nums[leftmost] != target {
