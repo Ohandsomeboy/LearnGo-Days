@@ -2,6 +2,13 @@ package main
 
 import "fmt"
 
+func max(x, y int) int {
+	if x < y {
+		return y
+	}
+	return x
+}
+
 func lengthOfLongestSubstring(s string) int {
 	// 哈希集合，记录每个字符是否出现过
 	m := map[byte]int{}
@@ -23,13 +30,6 @@ func lengthOfLongestSubstring(s string) int {
 		ans = max(ans, rk-i+1)
 	}
 	return ans
-}
-
-func max(x, y int) int {
-	if x < y {
-		return y
-	}
-	return x
 }
 
 func main() {
