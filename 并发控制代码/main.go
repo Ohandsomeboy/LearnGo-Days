@@ -6,30 +6,34 @@ import (
 )
 
 const N = 100000
-const M = 10000
+const M = 2
 
 var s [N]int
-var mutex sync.RWMutex
+var mutexes [N]sync.Mutex
 
 func updateS() {
-	for i := 0; i < M; i++ {
-		// 生成随机的i和j
+	for i := 0; i < 10000; i++ {
+		// 生成随机的i和jl
 		i := rand.Intn(N)
 		j := rand.Intn(N)
 
-		// 获取写锁
-		mutex.Lock()
+		// 获取i, i+1, i+2的锁
+		mutexes[i].Lock()
+		mutexes[(i+1)%N].Lock()
+		mutexes[(i+2)%N].Lock()
 
-		// 读取s(i), s(i+1), s(i+2)
+		// 读取i, i+1, i+2的值
 		x := s[i]
 		y := s[(i+1)%N]
 		z := s[(i+2)%N]
 
-		// 更新s(j)
+		// 更新s[j]
 		s[j] = x + y + z
 
-		// 释放写锁
-		mutex.Unlock()
+		// 释放i, i+1, i+2的锁
+		mutexes[i].Unlock()
+		mutexes[(i+1)%N].Unlock()
+		mutexes[(i+2)%N].Unlock()
 	}
 }
 
