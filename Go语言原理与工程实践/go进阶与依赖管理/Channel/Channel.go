@@ -1,4 +1,4 @@
-package go进阶与依赖管理
+package Channel
 
 func CalSquare() {
 	src := make(chan int)
