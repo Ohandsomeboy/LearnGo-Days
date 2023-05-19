@@ -37,17 +37,17 @@ func worker(id int, wg *sync.WaitGroup) {
 	}
 }
 
-//func main() {
-//	var wg sync.WaitGroup
-//
-//	for i := 1; i <= 3; i++ {
-//		wg.Add(1)
-//		go worker(i, &wg)
-//	}
-//
-//	wg.Wait()
-//	fmt.Println("All workers done")
-//}
+func main() {
+	var wg sync.WaitGroup
+
+	for i := 1; i <= 3; i++ {
+		wg.Add(1)
+		go worker(i, &wg)
+	}
+
+	wg.Wait()
+	fmt.Println("All workers done")
+}
 
 // 这个例子中，我们使用了sync.WaitGroup来等待三个goroutine完成。
 //在worker函数中，我们使用defer语句来确保Done方法总是被调用。
