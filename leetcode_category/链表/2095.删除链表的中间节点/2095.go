@@ -30,11 +30,21 @@ func deleteMiddle(head *ListNode) *ListNode {
 		fast = fast.Next.Next
 	}
 
-	// 将中间节点的前一个节点的Next指针指向中间节点的后一个节点
+	// 将中间节点的前一个节点的Next指针 指向 中间节点的后一个节点
 	slow.Next = slow.Next.Next
 
 	// 返回修改后的链表头节点
 	return dummyHead.Next
+}
+
+func FindMiddle(head *ListNode) int {
+	d := &ListNode{Next: head}
+	slow, fast := d, d
+	for fast.Next != nil && fast.Next.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	return slow.Next.Val
 }
 
 func main() {
@@ -52,6 +62,7 @@ func main() {
 	var Node4 = new(ListNode)
 	Node3.Next = Node4
 	Node4.Val = 5
-
-	printList(deleteMiddle(head))
+	//printList(head)
+	//printList(deleteMiddle(head))
+	fmt.Println(FindMiddle(head))
 }
