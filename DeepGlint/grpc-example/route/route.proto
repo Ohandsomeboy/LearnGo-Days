@@ -1,0 +1,72 @@
+
+//    描述一个向导服务，服务名为RouteGuide
+//    定义四种不同的信息类型，分别为Point，Rectangle，Feature（某个点相关的信息），RouteSummary（用户上传的点会有一个路线图） 以及Chat。
+//    定义四个方法：
+//    1.GetFeature（输入一个Point， 返回这个点的Feature）
+//    2.ListFeature（输入一个Rectangle， 输入流这个区域内所有的Feature）
+//    3.RecordRoute（输入流为每个时间点的位置Point，返回一个RouteSummary）
+//    4.Recommend（输入流RecommendationRequest，输出流Feature）
+
+syntax = "proto3";
+
+option go_package = "github.com/HanFa/learn-go/grpc-example/route";
+
+package route;
+
+// 在这个proto文件里主要定义：message , service
+// 在这里的话是把这个数字当作key，可以节约它的流量（tag）
+
+// message----------------------------------------
+message Point {
+    int32 latitude = 1;
+    int32 longitude = 2;
+}
+
+message Rectangle {
+    Point lo = 1;
+    Point hi = 2;
+}
+
+message Feature {
+    string name = 1;
+    Point location = 2;
+}
+
+// 路线的总结，它上面有多少点
+message RouteSummary {
+    int32 point_count = 1;
+    int32 distance = 2;
+    int32 elapsed_time = 3;
+}
+
+// enum 是 Enumeration 的简写，
+// Recommendation模式一定要从0开始写，因为它的default value为零
+enum RecommendationMode {
+    GetFarthest = 0;
+    GetNearest = 1;
+}
+
+// 这个Request会记录它想要哪个模式
+message RecommendationRequest {
+    RecommendationMode mode = 1;
+    Point point = 2;
+}
+// message----------------------------------------
+
+// service-------------(支持哪些服务)---------------
+service RouteGuide {
+  // 1.unary
+  rpc GetFeature(Point) returns (Feature) {}
+
+  // 2.server side streaming
+  rpc ListFeature(Rectangle) returns (stream Feature) {}
+
+  // 3.client side streaming
+  // (记录我这段路径：客户不断上传我经过的点（每秒一个），
+  // 上传是连续的，所以需要一个stream来保持和后端的流)，
+  // 后端收到客户端发送的全部点之后，就给我们返回一个 Summary
+  rpc RecordRoute(stream Point) returns (RouteSummary) {}
+
+  // bidirectional streaming
+  rpc Recommend(stream RecommendationRequest) returns (stream Feature) {}
+}

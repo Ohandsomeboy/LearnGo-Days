@@ -36,12 +36,12 @@ func process(conn net.Conn) {
 	reader := bufio.NewReader(conn)
 	err := auth(reader, conn)
 	if err != nil {
-		log.Printf("client %v auth failed:%v", conn.RemoteAddr(), err)
+		log.Printf("publisher %v auth failed:%v", conn.RemoteAddr(), err)
 		return
 	}
 	err = connect(reader, conn)
 	if err != nil {
-		log.Printf("client %v auth failed:%v", conn.RemoteAddr(), err)
+		log.Printf("publisher %v auth failed:%v", conn.RemoteAddr(), err)
 		return
 	}
 }

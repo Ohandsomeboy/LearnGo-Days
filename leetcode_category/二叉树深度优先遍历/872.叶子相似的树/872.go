@@ -11,6 +11,7 @@ type TreeNode struct {
 func leafSimilar(root1 *TreeNode, root2 *TreeNode) bool {
 	//r1 := []int{}
 	//r2 := []int{}
+	//return reflect.DeepEqual(dfs(root1), dfs(root2))
 	return reflect.DeepEqual(dfs(root1), dfs(root2))
 }
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 // 前往后遍历，后往前遍历
@@ -87,6 +88,15 @@ func findRightBound(nums []int, target int) int {
 //	rightmost := sort.SearchInts(nums, target+1) - 1
 //	return []int{leftmost, rightmost}
 //}
+
+func searchSort(nums []int, target int) []int {
+	leftmost := sort.SearchInts(nums, target)
+	if leftmost == len(nums) || nums[leftmost] != target {
+		return []int{-1, -1}
+	}
+	rightmost := sort.SearchInts(nums, target) - 1
+	return []int{leftmost, rightmost}
+}
 
 func main() {
 	var num_array = []int{1}

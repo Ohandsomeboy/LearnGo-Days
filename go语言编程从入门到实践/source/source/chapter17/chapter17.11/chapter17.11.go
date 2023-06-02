@@ -85,10 +85,10 @@ func get_jobs(wd selenium.WebDriver) []Job {
 		publis, _ := v.FindElement(selenium.ByClassName, "info-publis")
 		j.Publis, _ = publis.Text()
 		// 获取公司名称
-		cmp, _ := v.FindElement(selenium.ByCSSSelector, `[class="company-text"]>h3`)
+		cmp, _ := v.FindElement(selenium.ByCSSSelector, `[class="company-冒泡排序"]>h3`)
 		j.Cmp, _ = cmp.Text()
 		// 获取公司行业和规模
-		scale, _ := v.FindElement(selenium.ByCSSSelector, `[class="company-text"]>p`)
+		scale, _ := v.FindElement(selenium.ByCSSSelector, `[class="company-冒泡排序"]>p`)
 		j.Scale, _ = scale.Text()
 		jobs = append(jobs, j)
 	}

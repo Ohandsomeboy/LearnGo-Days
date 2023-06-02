@@ -57,11 +57,11 @@ var tests = []struct {
 	code    int
 	message string
 }{
-	{errPanic, 500, "Internal Server Error"},
+	{errPanic, 500, "Internal subscriber Error"},
 	{errUserError, 400, "user error"},
 	{errNotFound, 404, "Not Found"},
 	{errNoPermission, 403, "Forbidden"},
-	{errUnknown, 500, "Internal Server Error"},
+	{errUnknown, 500, "Internal subscriber Error"},
 	{noError, 200, "no error"},
 }
 

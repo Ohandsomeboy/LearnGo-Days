@@ -10,6 +10,15 @@ type ListNode struct {
 // 至于本题并不难，只需要判断两个链表头部元素的大小，
 // 把小的那个链表节点放到 结果链表 的结尾即可。
 func reverseList_head(head *ListNode) *ListNode {
+	//var newHead *ListNode
+	//for head != nil {
+	//	next := head.Next
+	//	head.Next = newHead
+	//	newHead = head
+	//	head = next
+	//}
+	//return newHead
+
 	var newHead *ListNode
 	for head != nil {
 		next := head.Next
@@ -41,6 +50,14 @@ func reverseList_2index(head *ListNode) *ListNode {
 
 // 递归反转链表
 func reverseList(head *ListNode) *ListNode {
+	//if head == nil || head.Next == nil {
+	//	return head
+	//}
+	//p := reverseList(head.Next)
+	//head.Next.Next = head
+	//head.Next = nil
+	//return p
+
 	if head == nil || head.Next == nil {
 		return head
 	}

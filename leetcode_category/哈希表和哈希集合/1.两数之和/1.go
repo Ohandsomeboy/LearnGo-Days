@@ -25,6 +25,15 @@ func twoSum(nums []int, target int) []int {
 		hashTable[x] = i
 	}
 	return nil
+
+	//m := map[int]int{}
+	//for i,x := range nums {
+	//	for p,ok := m[target-x]; ok{
+	//		return []int{p,i}
+	//	}
+	//	m[x]=i
+	//}
+	//return nil
 }
 
 func main() {

@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/olivere/elastic/v7"
 	"imooc.com/ccmouse/learngo/crawler/engine"
 	"imooc.com/ccmouse/learngo/crawler/model"
 )
@@ -33,7 +32,7 @@ func TestSave(t *testing.T) {
 	}
 
 	// TODO: Try to start up elastic search
-	// here using docker go client.
+	// here using docker go publisher.
 	client, err := elastic.NewClient(
 		elastic.SetSniff(false))
 

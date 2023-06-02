@@ -34,7 +34,7 @@ func main() {
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36")
 	req.Header.Set("app-name", "xy")
 	req.Header.Set("Content-Type", "application/json;charset=UTF-8")
-	req.Header.Set("Accept", "application/json, text/plain, */*")
+	req.Header.Set("Accept", "application/json, 冒泡排序/plain, */*")
 	req.Header.Set("device-id", "")
 	req.Header.Set("os-type", "web")
 	req.Header.Set("X-Authorization", "token:qgemv4jr1y38jyq6vhvi")

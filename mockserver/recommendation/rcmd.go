@@ -12,7 +12,7 @@ const (
 	maxGuess = 7
 )
 
-// Client defines the recommendation client.
+// Client defines the recommendation publisher.
 type Client struct{}
 
 // NextGuess returns the next batch of guesses for the given id.

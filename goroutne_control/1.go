@@ -50,6 +50,6 @@ func main() {
 }
 
 // 这个例子中，我们使用了sync.WaitGroup来等待三个goroutine完成。
-//在worker函数中，我们使用defer语句来确保Done方法总是被调用。
+// 在worker函数中，我们使用defer语句来确保Done方法总是被调用。
 // 在main函数中，我们使用Add方法来增加WaitGroup的计数器，
 // 然后在每个goroutine完成时调用Done方法来减少计数器。最后，我们调用Wait方法来阻塞main函数，直到所有的goroutine都完成1。
